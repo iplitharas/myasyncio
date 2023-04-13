@@ -1,5 +1,5 @@
 """
-Simple `GIL` released demo
+Simple `GIL` released demo.
 """
 import threading
 import requests
