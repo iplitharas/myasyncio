@@ -19,25 +19,34 @@ def create_web_server_socket(address: tuple = ("127.0.0.1", 8000)):
     # Open the socket
     print(f"Listening at: {address}")
     server_socket.listen()
+    connections = []
     # Serve
     try:
-        connection, client_address = server_socket.accept()
-        print(f"Got a connection from: {client_address}")
-        # create a small buffer
-        buffer = b""
-        while buffer[-2:] != b"\r\n":
-            # read 2 bytes
-            data = connection.recv(2)
-            if not data:
-                break
-            else:
-                buffer += data
-                print(f"got data: {data}")
-        print(f"Client says: {buffer}")
-        connection.sendall(b">>Server says: " + buffer)
+        while True:
+            # for each client create a new connection!
+            # this will block the loop until we have a new connection
+            # as a result, all the clients will have to wait
+            connection, client_address = server_socket.accept()
+            print(f"Got a connection from: {client_address}")
+            connections.append(connection)
+            for client_conn in connections:
+                print(f"Total connections are: {len(connections)}")
+                # create a small buffer
+                buffer = b""
+                while buffer[-2:] != b"\r\n":
+                    # read 2 bytes
+                    data = client_conn.recv(2)
+                    print(f"I got data: {data}")
+                    if not data:
+                        break
+                    else:
+                        buffer += data
+
+                print(f"Client says: {buffer}")
+                client_conn.send(b">>Server says: " + buffer)
     finally:
-        print("Closing the connection")
-        connection.close()
+        print("Closing the web-socket")
+        server_socket.close()
 
 
 if __name__ == "__main__":
