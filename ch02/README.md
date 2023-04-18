@@ -3,6 +3,10 @@
   * [asyncio.run](#asynciorun)
   * [Tasks](#tasks)
   * [Cancelling tasks](#cancelling-tasks)
+  * [Timeout tasks](#timeout-tasks)
+  * [Futures](#futures)
+  * [The relationship between futures, tasks, and coroutines](#the-relationship-between-futures-tasks-and-coroutines)
+  * [Using debug mode](#using-debug-mode)
 <!-- TOC -->
 ## Coroutines
 
