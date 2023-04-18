@@ -2,7 +2,7 @@
 Demo to show the execution of two long I/O co-routines
 """
 import asyncio
-from time import time, sleep
+from time import sleep, time
 
 
 async def say_morning(sleep_sec: int) -> str:

@@ -10,7 +10,7 @@ from tools import delay
 async def main():
     long_running_task = asyncio.create_task(delay(10))
 
-    seconds_elapsed = 0                                             
+    seconds_elapsed = 0
     while not long_running_task.done():
         print("Task not finished, check again in 1 sec")
         await asyncio.sleep(1)
