@@ -17,16 +17,11 @@ install-hooks: ## Install hooks
 install-local:poetry-env install-hooks
 
 
-test: ## Run locally pytest with coverage
-	pytest -vv -p no:warnings --cov=.
-	echo "🚀🚀"
-
 check: ## Run isort black and pylint in all files
 	isort .
 	black .
-	pylint --recursive=y movierama
 
-.PHONY: help create-env install-local install-hooks  check
+.PHONY: help create-env install-local install-hooks check
 
 help:
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)

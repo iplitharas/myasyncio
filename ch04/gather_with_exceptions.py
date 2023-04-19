@@ -23,7 +23,9 @@ async def main():
         requests = [fetch(session=session, url=url) for url in urls]
         results = await asyncio.gather(*requests, return_exceptions=True)
         exceptions = [res for res in results if isinstance(res, Exception)]
-        successful_results = [res for res in results if not isinstance(res, Exception)]
+        successful_results = [
+            res for res in results if not isinstance(res, Exception)
+        ]
         print(f"Exceptions: {exceptions}")
         print(f"Results: {successful_results}")
 

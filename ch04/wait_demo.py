@@ -4,8 +4,9 @@ Instead of gather we can use the `wait`
 
 import asyncio
 import logging
-from aiohttp import ClientSession
+
 import aiohttp
+from aiohttp import ClientSession
 
 from tools import async_timed
 
@@ -23,7 +24,10 @@ async def main_all():
         good_request = fetch(session, "https://python.org")
         bad_request = fetch(session, "python:/ /bad")
 
-        fetchers = [asyncio.create_task(good_request), asyncio.create_task(bad_request)]
+        fetchers = [
+            asyncio.create_task(good_request),
+            asyncio.create_task(bad_request),
+        ]
 
         done, pending = await asyncio.wait(fetchers)
 
@@ -50,7 +54,10 @@ async def main_all():
         good_request = fetch(session, "https://python.org")
         bad_request = fetch(session, "python:/ /bad")
 
-        fetchers = [asyncio.create_task(good_request), asyncio.create_task(bad_request)]
+        fetchers = [
+            asyncio.create_task(good_request),
+            asyncio.create_task(bad_request),
+        ]
 
         done, pending = await asyncio.wait(fetchers)
 
@@ -76,7 +83,10 @@ async def main_first_exception():
         good_request = fetch(session, "https://python.org")
         bad_request = fetch(session, "python:/ /bad")
 
-        fetchers = [asyncio.create_task(bad_request), asyncio.create_task(good_request)]
+        fetchers = [
+            asyncio.create_task(bad_request),
+            asyncio.create_task(good_request),
+        ]
 
         done, pending = await asyncio.wait(
             fetchers, return_when=asyncio.FIRST_EXCEPTION

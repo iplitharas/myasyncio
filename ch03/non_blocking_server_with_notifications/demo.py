@@ -13,7 +13,9 @@ from selectors import DefaultSelector
 
 def create_web_server_socket(address: tuple = ("127.0.0.1", 8000)):
     selector = DefaultSelector()
-    server_socket = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM)
+    server_socket = socket.socket(
+        family=socket.AF_INET, type=socket.SOCK_STREAM
+    )
     server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server_socket.bind(address)
     print(f"Listening at: {address}")

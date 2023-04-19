@@ -2,8 +2,10 @@
 `aiohttp` timeout demo.
 """
 import asyncio
+
 import aiohttp
 from aiohttp import ClientSession
+
 from tools import async_timed
 
 
@@ -19,7 +21,7 @@ async def fetch_status(session: ClientSession, url: str) -> int:
 
 @async_timed()
 async def main():
-    session_timeout = aiohttp.ClientTimeout(total=1, connect=.1)
+    session_timeout = aiohttp.ClientTimeout(total=1, connect=0.1)
     async with aiohttp.ClientSession(timeout=session_timeout) as session:
         url = "https://www.google.com"
         status = await fetch_status(session=session, url=url)

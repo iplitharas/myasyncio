@@ -4,6 +4,7 @@ but with `as_completed` we can use the results
 """
 
 import asyncio
+
 from aiohttp import ClientSession
 
 

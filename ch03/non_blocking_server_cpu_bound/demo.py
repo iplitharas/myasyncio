@@ -10,7 +10,9 @@ import socket
 def create_web_server_socket(address: tuple = ("127.0.0.1", 8000)):
     # SOCK_STREAM -> TCP
     # AF_INET -> hostname port
-    server_socket = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM)
+    server_socket = socket.socket(
+        family=socket.AF_INET, type=socket.SOCK_STREAM
+    )
     # Allow us to reuse the port number after we stop and restart the application
     server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     # Set the address
