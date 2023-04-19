@@ -2,9 +2,10 @@
 We can have as well async generators
 """
 import asyncio
+from typing import Generator
 
 
-async def generator_demo(until: int = 10):
+async def generator_demo(until: int = 10) -> Generator[int]:
     for number in range(1, until):
         await asyncio.sleep(1)
         yield number
