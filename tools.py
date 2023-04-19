@@ -1,8 +1,8 @@
 """Simple delay demo coroutine"""
 import asyncio
 import time
-from typing import Callable
 from functools import wraps
+from typing import Callable
 
 
 async def delay(delay_seconds: int) -> int:
@@ -24,6 +24,7 @@ def async_timed():
                 end = time.time()
                 total = end - start
                 print(f"Finished {func} in total {total:.4f} second(s)")
+
         return inner
 
     return outer

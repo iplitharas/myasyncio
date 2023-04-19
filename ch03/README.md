@@ -64,3 +64,34 @@ while True:
 > We also keep track of any new sockets we need to watch from running those 
 > coroutines and register them with the selector.
 > We then calculate the desired timeout for when we call `select`
+
+
+## Handling errors in tasks 
+```python
+async def echo(connection: socket,
+               loop: AbstractEventLoop) -> None:
+    while data := await loop.sock_recv(connection, 1024):
+        if data == b'boom\r\n':
+            raise Exception("Unexpected network error")
+        await loop.sock_sendall(connection, data)
+```
+> When an exception is thrown inside a task,
+> the task is considered done with its result as an exception.
+> This means that no exception is thrown up the call stack.
+> Furthermore, we have no cleanup here. 
+> If this exception is thrown,
+> we can’t react to the task failing because we never retrieved the exception.
+
+
+## Shutting down gracefully
+
+### Signals
+> Signals are a concept in Unix-based operating systems for asynchronously notifying a process
+> of an event that occurred at the operating system level.
+> While this sounds very low-level, you’re probably familiar with some signals.
+> For instance, a common signal is **SIGINT**, short for `signal interrupt`.
+> This is triggered when you press CTRL-C to kill a command-line application.
+> In Python, we can often handle this by catching the KeyboardInterrupt Exception.
+> Another common signal is **SIGTERM**, short for `signal terminate`.
+> This is triggered when we run the `kill` command on a
+> particular process to stop its execution.

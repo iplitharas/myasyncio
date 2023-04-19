@@ -2,6 +2,7 @@
 Simple `GIL` released demo.
 """
 import threading
+
 import requests
 
 from ch01.tools import time_it

@@ -1,5 +1,5 @@
 from time import perf_counter_ns
-from typing import Callable, Any
+from typing import Any, Callable
 
 
 def time_it(fn: Callable) -> Callable:

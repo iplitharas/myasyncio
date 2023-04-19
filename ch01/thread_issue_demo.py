@@ -5,7 +5,6 @@ because only on python process can execute python byte code
 """
 import threading
 
-
 from ch01.tools import time_it
 
 
